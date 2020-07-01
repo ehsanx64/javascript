@@ -12,13 +12,13 @@
         /*
         ** Utility Functions
         */
-        p = what => document.writeln(what);
-        l = what => console.log(what);
+        p = f => document.writeln(f);
+        l = f => console.log(f);
 
         /*
         ** Data Functions
         */
-        getDataById = (id) => axios.get("/data.json");
+        getDataById = () => axios.get("/data.json");
         getOtherDataById = () => axios.get("/data.json").then(response => response.data.data);
 
         /*
@@ -33,7 +33,7 @@
 
             // Map over our dummy list
             theList.map((item) => {
-                promises.push(getDataById(item.id));
+                promises.push(getDataById());
             });
 
             // After all the promises resolved ...
