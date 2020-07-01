@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>JavaScript Promises</title>
+    <script src="axios.min.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript">
+        /*
+        ** Utility Functions
+        */
+        p = what => document.writeln(what);
+        l = what => console.log(what);
+
+        /*
+        ** Data Functions
+        */
+        getDataById = (id) => axios.get("/data.json");
+        getOtherDataById = () => axios.get("/data.json").then(response => response.data.data);
+
+        /*
+        ** Entry Point (After loading the window)
+        */
+        window.onload = () => {
+            // Dummy array to simulate lead data array
+            let theList = [1, 2, 3, 4, 5];
+
+            // An array to hold the promises
+            let promises = [];
+
+            // Map over our dummy list
+            theList.map((item) => {
+                promises.push(getDataById(item.id));
+            });
+
+            // After all the promises resolved ...
+            Promise.all(promises).then((res) => {
+                // We're going to have another set of promises
+                let p2s = [];
+
+                // Simulate another 50 XHRs, this time using the other function
+                for (var i = 0; i <= 50; i++) {
+                    p2s.push(getOtherDataById());
+                }
+
+                // Dump the returned results
+                Promise.all(p2s).then(data => l(data));
+            })
+        }
+    </script>
+</body>
+
+</html>
