@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import Button from '@mui/material/Button';
+import Heading from '../components/Heading.jsx';
 
 function About() {
     return (
         <>
-            <h3>About</h3>
-        
+            <Heading title="About" />  
             <Button variant="contained">Hello world</Button>
         </>
     )

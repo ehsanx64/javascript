@@ -1,15 +1,14 @@
-import { useEffect, useState } from 'react'
-import { createClient } from '@supabase/supabase-js'
-import { NavLink } from 'react-router'
-
+import { useEffect, useState } from 'react';
+import { createClient } from '@supabase/supabase-js';
+import { GetSamplePersons, IsDevMode } from '../libs/tools.js';
+import Heading from '../components/Heading.jsx';
 
 const supabase = createClient(
-    "https://gkcrlyitpckczsexwfgs.supabase.co",
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdrY3JseWl0cGNrY3pzZXh3ZmdzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDQ4NzU3MDYsImV4cCI6MjA2MDQ1MTcwNn0.1Tati0Uzs3EGLyZmdGpvf46wGobBqccBQ2qiX0BBDTE"
-)
+    import.meta.env.VITE_SUPABASE_PROJECT_URL,
+    import.meta.env.VITE_SUPABASE_ANON_KEY
+);
 
 function App() {
-    const [count, setCount] = useState(0);
     const [persons, setPersons] = useState([]);
 
     useEffect(() => {
@@ -19,26 +18,16 @@ function App() {
     })
 
     async function getPersons() {
-        //const { data } = await supabase.from("person").select();
-        //setPersons(data);
-
-        setTimeout(() => {
-            setPersons([
-                {
-                    id: 1,
-                    name: "Ali",
-                },
-                {
-                    id: 2,
-                    name: "Reza",
-                },
-                {
-                    id: 3,
-                    name: "Hamid",
-                },
-            ])
-            
-        }, 1000);
+        if (IsDevMode()) {
+            setTimeout(() => {
+                setPersons(GetSamplePersons())
+            }, 1000);
+        } else {
+            const { data } = await supabase.from("person").select();
+            if (data !== null) {
+                setPersons(data);
+            }
+        }
     }
 
     function renderPersons() {
@@ -55,6 +44,7 @@ function App() {
 
     return (
         <>
+            <Heading title="Persons" />  
             {renderPersons()}
         </>
     )

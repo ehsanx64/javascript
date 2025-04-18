@@ -6,25 +6,21 @@ import About from './pages/About';
 // import ErrorPage from './pages/ErrorPage';
 
 const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    // errorElement: <ErrorPage />,
-    children: [
-      {
+    {
         path: '/',
-        element: <Home />,
-      },
-      {
-        path: 'about',
-        element: <About />,
-      },
-    //   {
-    //     path: 'contact',
-    //     element: <Contact />,
-    //   },
-    ],
-  },
+        element: <App />,
+        // errorElement: <ErrorPage />,
+        children: [
+            {
+                path: '/',
+                element: <Home />,
+            },
+            {
+                path: 'about',
+                element: <About />,
+            },
+        ],
+    },
 ]);
 
 export default router;
