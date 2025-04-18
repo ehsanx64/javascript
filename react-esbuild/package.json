@@ -1,0 +1,41 @@
+{
+  "name": "esbuild-react",
+  "version": "1.0.0",
+  "description": "React.js app utilizing esbuild",
+  "main": "index.js",
+  "scripts": {
+    "build:esbuild": "esbuild src/App.jsx --bundle --minify --sourcemap --target=chrome58,firefox57,safari11,edge16 --outfile=dist/bundle.js",
+    "build:tailwind": "npx tailwindcss -i ./src/input.css -o ./dist/styles.css --minify",
+    "build": "npm-run-all --parallel build:*",
+    "watch:esbuild": "esbuild src/App.jsx --bundle --watch --serve --servedir=dist --sourcemap --outfile=dist/bundle.js",
+    "watch:tailwind": "npx tailwindcss -i ./src/input.css -o ./dist/styles.css --watch",
+    "dev": "npm-run-all --parallel watch:*",
+    "server": "python -m http.server 8080 --directory dist",
+    "esbuild-version": "./node_modules/.bin/esbuild --version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ehsanx64/esbuild-react.git"
+  },
+  "keywords": [
+    "react.js",
+    "esbuild"
+  ],
+  "author": "Ehsan Mohammadi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ehsanx64/esbuild-react/issues"
+  },
+  "homepage": "https://github.com/ehsanx64/esbuild-react#readme",
+  "dependencies": {
+    "esbuild": "0.18.17",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.27",
+    "tailwindcss": "^3.3.3"
+  }
+}
