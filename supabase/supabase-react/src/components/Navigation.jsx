@@ -136,7 +136,7 @@ function Navigation(props) {
                             {appName}
                         </Typography>
 
-                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', sm: 'none' } }}>
                             <IconButton
                                 size="large"
                                 aria-label="account of current user"
@@ -185,7 +185,7 @@ function Navigation(props) {
                             sx={{
                                 mr: 2,
                                 display: { xs: 'flex', md: 'none' },
-                                flexGrow: 1,
+                                flexGrow: {xs: 1, sm: 'initial'},
                                 fontFamily: 'monospace',
                                 fontWeight: 700,
                                 letterSpacing: '.3rem',
@@ -196,7 +196,7 @@ function Navigation(props) {
                             {appName}
                         </Typography>
 
-                        <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                        <Box sx={{ flexGrow: 1, display: { xs: 'none', sm: 'flex', md: 'flex' } }}>
                             {pages.map((item) => (
                                 <Button
                                     component={Link}
@@ -242,6 +242,7 @@ function Navigation(props) {
                     </Toolbar>
                 </Container>
             </AppBar>
+        
             <Drawer
                 container={container}
                 variant="temporary"
