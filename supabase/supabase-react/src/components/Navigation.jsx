@@ -137,9 +137,6 @@ function Navigation(props) {
                                 aria-haspopup="true"
                                 onClick={handleDrawerToggle}
                                 color="inherit"
-                                sx={{
-                                    paddingLeft: 0,
-                                }}
                             >
                                 <MenuIcon />
                             </IconButton>
