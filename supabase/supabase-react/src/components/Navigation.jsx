@@ -1,7 +1,5 @@
 import { useState, forwardRef } from 'react';
-
-import { NavLink } from 'react-router';
-import { Link, MemoryRouter, StaticRouter } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -17,7 +15,6 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 
@@ -25,6 +22,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import AdbIcon from '@mui/icons-material/Adb';
 
 import { GetAppName } from '../libs/tools';
+import DarkModeToggler from './DarkModeToggler';
 
 // Constants
 const appName = GetAppName();
@@ -81,9 +79,9 @@ function Navigation(props) {
                     <ListItem key={item.route + item.title} disablePadding>
                         {/* <NavLink to={item.route} end> */}
                         {/* <ListItemButton sx={{ textAlign: 'center' }}
-                            to={ }>
-                            <ListItemText primary={item.title} />
-                        </ListItemButton> */}
+                        to={ }>
+                        <ListItemText primary={item.title} />
+                    </ListItemButton> */}
                         <ListItemLink to={item.route} primary={item.title} />
                         {/* </NavLink> */}
                     </ListItem>
@@ -93,10 +91,6 @@ function Navigation(props) {
     );
 
     const container = window !== undefined ? () => window().document.body : undefined;
-
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
@@ -185,7 +179,7 @@ function Navigation(props) {
                             sx={{
                                 mr: 2,
                                 display: { xs: 'flex', md: 'none' },
-                                flexGrow: {xs: 1, sm: 'initial'},
+                                flexGrow: { xs: 1, sm: 'initial' },
                                 fontFamily: 'monospace',
                                 fontWeight: 700,
                                 letterSpacing: '.3rem',
@@ -210,6 +204,11 @@ function Navigation(props) {
                             ))}
                         </Box>
 
+                        <Box sx={{ flexGrow: 0, margin: '0 1em' }}>
+                            <Tooltip title="Toggle Dark Mode">
+                                <DarkModeToggler />
+                            </Tooltip>
+                        </Box>
                         <Box sx={{ flexGrow: 0 }}>
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -242,7 +241,7 @@ function Navigation(props) {
                     </Toolbar>
                 </Container>
             </AppBar>
-        
+
             <Drawer
                 container={container}
                 variant="temporary"
