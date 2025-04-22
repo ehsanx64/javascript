@@ -33,6 +33,10 @@ const pages = [
         route: '/'
     },
     {
+        title: 'Persons',
+        route: '/persons'
+    },
+    {
         title: 'About',
         route: '/about'
     },

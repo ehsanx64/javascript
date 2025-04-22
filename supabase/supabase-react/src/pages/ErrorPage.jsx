@@ -1,11 +1,11 @@
 import Heading from '../components/Heading.jsx';
 
-function Home() {
+function ErrorPage() {
     return (
         <>
-            <Heading title="Home" />  
+            <Heading title="ErrorPage" />  
         </>
     )
 }
 
-export default Home
+export default ErrorPage
